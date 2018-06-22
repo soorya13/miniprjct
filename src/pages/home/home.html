@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Zuan</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h3>Zuan Eductional Institute</h3>
+
+  <ion-item>
+    <ion-label fixed>userId</ion-label>
+    <ion-input type="text" [(ngModel)] ="userId" name="user"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label fixed>Password</ion-label>
+    <ion-input type="password" [(ngModel)] ="password" name="password"></ion-input>
+  </ion-item>
+    
+       <button ion-button outline (click)="login()">login</button>
+    <button ion-button outline (click)="register()">Register</button>
+    
+ 
+</ion-content>

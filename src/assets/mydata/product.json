@@ -1,0 +1,27 @@
+[
+    {
+        "coursename":"C++ programe",
+        "courseprice":"10000",
+        "courseduration":"25 days"
+    },
+    {
+        "coursename":"C programe",
+        "courseprice":"12000",
+        "courseduration":"30 days"
+    },
+    {
+        "coursename":"Angular js programe",
+        "courseprice":"23000",
+        "courseduration":"32 days"
+    },
+    {
+        "coursename":"IOnic Framework",
+        "courseprice":"14000",
+        "courseduration":"25 days"
+    },
+    {
+        "coursename":"Java programe",
+        "courseprice":"16000",
+        "courseduration":"28 days"
+    }
+]
