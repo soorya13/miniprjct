@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
 import { HomePage } from '../../pages/home/home';
-
+import {User} from '../../model/user-model';
+import{DataServiceProvider} from '../../providers/data-service/data-service';
 /**
  * Generated class for the SignupPage page.
  *
@@ -16,21 +16,27 @@ import { HomePage } from '../../pages/home/home';
   templateUrl: 'signup.html'
 })
 export class SignupPage {
-data ={};
-userId:string;
+user:User=new User();
+userId:number;
+username:string;
+email:string;
+mobile:string;
 password:string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public storage:Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public dataService:DataServiceProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignupPage');
   }
   register(){
-  console.log(this.data);
-  this.storage.set('number',this.userId);
-  this.storage.set('pass',this.password);
-
+  this.user.id=this.userId;
+  this.user.name=this.username;
+  this.user.email=this.email;
+  this.user.mobile=this.mobile;
+  this.user.password=this.password;
+console.log('Trying to signup: '+JSON.stringify(this.user));
+  this.dataService.addUser(this.user);
   alert("registered successfully");
   this.navCtrl.setRoot(HomePage);  }
 

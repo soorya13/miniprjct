@@ -9,8 +9,9 @@ import { Http,HttpModule} from '@angular/http';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { CourseDetailProvider } from '../providers/course-detail/course-detail';
+
 import { IonicStorageModule } from '@ionic/storage';
+import { DataServiceProvider } from '../providers/data-service/data-service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { IonicStorageModule } from '@ionic/storage';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    CourseDetailProvider
+    DataServiceProvider
   ]
 })
 export class AppModule {}

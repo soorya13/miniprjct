@@ -1,34 +1,32 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import {User} from '../../model/user-model';
+import{DataServiceProvider} from '../../providers/data-service/data-service';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-UserId:string;
+userId:number;
 password:string;
 
   constructor(public navCtrl: NavController,
-  public storage:Storage) {
+  public storage:Storage, public dataServiceProvider:DataServiceProvider) {
 
   }
 login()
 {
-this.storage.get('number').then((number) => {
-      console.log('Your number is', number);
-      if(number == this.UserId ){
-alert("login sucess!!");
+console.log("for user:"+this.userId+"pass:"+this.password);
+if(this.dataServiceProvider.login(this.userId,this.password)){
 this.navCtrl.setRoot('MaindashboardPage');
 }
-else{
-alert("Incorrect usrename passowrd");
+else {
+alert("There is something wrong with the credentials");
 }
-    });
-
-
 }
+
 register()
 {
 this.navCtrl.setRoot('SignupPage');

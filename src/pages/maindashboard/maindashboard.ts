@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { CourseDetailProvider } from '../../providers/course-detail/course-detail';
 
 /**
  * Generated class for the MaindashboardPage page.
@@ -17,7 +16,7 @@ import { CourseDetailProvider } from '../../providers/course-detail/course-detai
 export class MaindashboardPage implements OnInit{
 time:String;
 date:Date;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public coursedetail:CourseDetailProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   
 }
 MaindashboardPage()
