@@ -7,8 +7,9 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Zuan Technologies 
-             <a href="http://localhost:8100/"><p>Logout</p></a> 
+    <ion-title>Zuan Technologies
+             <p class="alright" ion-button outline (click)="homePage()">Logout</p>
+        
 </ion-title>
   </ion-navbar>
 
@@ -17,14 +18,17 @@
     
     <ion-card>
 Time {{time}}<br>
-        Date  {{date|date:'dd-MM-yyyy'}}
+        Date  {{date|date:'dd-MM-yyyy'}}<div class="alright">Hi, {{loggedUser.name}}</div>
   <ion-card-header>
-    
+    <p *ngIf="!punched">Welcome</p>
+    <p *ngIf="punched">Thank You!</p>
   </ion-card-header>
 
   <ion-card-content>
 
   </ion-card-content>
-        <button ion-button full (click)="MaindashboardPage()">Punch In</button>
+        <button *ngIf="!punched" ion-button full (click)="punchIn()">Punch In</button>
+        <button *ngIf="punched && !punchedDay" ion-button full (click)="punchOut()">Punch Out</button>
+        <button ion-button outline full (click)="showAttendance()">View My Attendance Details</button>
 </ion-card>
 </ion-content>

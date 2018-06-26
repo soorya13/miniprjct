@@ -28,6 +28,7 @@ password:string;
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignupPage');
+    this.userId=this.dataService.getLastUsedId();
   }
   register(){
   this.user.id=this.userId;

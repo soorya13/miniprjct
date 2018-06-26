@@ -12,6 +12,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { IonicStorageModule } from '@ionic/storage';
 import { DataServiceProvider } from '../providers/data-service/data-service';
+import { AttendancedtlPage } from '../pages/attendancedtl/attendancedtl';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { DataServiceProvider } from '../providers/data-service/data-service';
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage  
   ],
   providers: [
     StatusBar,

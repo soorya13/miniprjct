@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MaindashboardPage } from '../../pages/maindashboard/maindashboard';
+import { HomePage } from '../home/home';
+import { User } from '../../model/user-model';
+import { DataServiceProvider } from '../../providers/data-service/data-service';
 
 
 /**
@@ -10,37 +13,25 @@ import { MaindashboardPage } from '../../pages/maindashboard/maindashboard';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+
 @Component({
   selector: 'page-coursedesc',
   templateUrl: 'coursedesc.html',
 })
 export class CoursedescPage implements OnInit{
-time:String;
-date:Date;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  loggedUser:User;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,public dataServiceProvider:DataServiceProvider) {
   }
-  CoursedescPage(){
-  this.navCtrl.setRoot('MaindashboardPage');
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad AttendancedtlPage');
   }
   ngOnInit(){
-  this.date=new Date();
-  setInterval(()=>{
-  var now=new Date();
-  var h,m,s;
-  h=this.check(now.getHours());
-  m=this.check(now.getMinutes());
-  s=this.check(now.getSeconds());
-  this.time=h+":"+m+":"+s;
-  },1000)
+    this.loggedUser=this.dataServiceProvider.getLoggedUser();
   }
-  check(num)
-  {
-  if(num<10){
-  return '0'+num;
+  public homePage(){
+    this.navCtrl.setRoot(HomePage);
   }
-  else{
-  return num;
-  }
-  }
+
   }

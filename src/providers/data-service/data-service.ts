@@ -5,21 +5,21 @@ import {AppData} from '../../model/data-model';
 import {User} from '../../model/user-model';
 
 
-/*
-  Generated class for the DataServiceProvider provider.
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class DataServiceProvider {
     appData:User[]=[];
-    loggedUser:User={};
+    loggedUser:User;
+    lastUsedId:number;
 
   constructor(public storage:Storage) {
     console.log('Initialize');
+    this.lastUsedId=100;
    
     
+  }
+  public getLastUsedId(){
+    return this.lastUsedId;
   }
   
   public getLoggedUser(){
@@ -29,7 +29,7 @@ export class DataServiceProvider {
   public login(id:number,password:string):boolean{
   console.log("inside login");
   let flag:boolean=false;
-  console.log(this.appData.length);
+  console.log(JSON.stringify(this.appData));
   for(let user of this.appData){
   console.log("inside loop");
   if(user.id==id && user.password==password){
@@ -47,9 +47,18 @@ export class DataServiceProvider {
   public addUser(user:User){ 
     user.attendance=[];
     this.appData.push(user);
+    this.lastUsedId++;
     console.log(JSON.stringify(this.appData));
   }
-  
+
+  public updateAttendance(user:User){
+    for(let i in this.appData){
+      if(this.appData[i].id==user.id){
+        this.appData[i].attendance=user.attendance;
+      }
+    }
+    console.log(JSON.stringify(this.appData));
+  }
  
 
 }
