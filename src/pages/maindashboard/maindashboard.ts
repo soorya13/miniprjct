@@ -20,31 +20,33 @@ import { ListPage } from '../list/list';
   templateUrl: 'maindashboard.html',
 })
 export class MaindashboardPage implements OnInit {
-  punch:Punch;
+  punch: Punch;
   time: string;
   date: Date;
   loggedUser: User;
   punched: boolean = false;
-  punchedDay:boolean=false;
+  punchedDay: boolean = false;
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: DataServiceProvider) {
 
   }
   public homePage() {
     this.navCtrl.setRoot(HomePage);
   }
-  public showAttendance(){
+  public showAttendance() {
     this.navCtrl.setRoot(ListPage);
   }
 
   ngOnInit() {
-    this.punch=new Punch();
-    this.loggedUser=this.dataService.getLoggedUser();
-    for(let i in this.loggedUser.attendance){
-      if(this.loggedUser.attendance[i].inTime){
-        this.punched=true;
-      }
-      if(this.loggedUser.attendance[i].outTime){
-        this.punchedDay=true;
+    this.punch = new Punch();
+    this.loggedUser = this.dataService.getLoggedUser();
+    for (let i in this.loggedUser.attendance) {
+      if (this.dateAsString(this.loggedUser.attendance[i].date) == this.dateAsString(new Date())) {
+        if (this.loggedUser.attendance[i].inTime) {
+          this.punched = true;
+        }
+        if (this.loggedUser.attendance[i].outTime) {
+          this.punchedDay = true;
+        }
       }
     }
     this.date = new Date();
@@ -66,23 +68,23 @@ export class MaindashboardPage implements OnInit {
     }
   }
   public punchIn() {
-    this.punch.date=this.date;
-    this.punch.inTime=this.time;
-    this.punch.punched=false;
+    this.punch.date = this.date;
+    this.punch.inTime = this.time;
+    this.punch.punched = false;
     this.loggedUser.attendance.push(this.punch);
     this.dataService.updateAttendance(this.loggedUser);
     this.punched = true;
   }
-  dateAsString(date:Date){
-    return date.getDate()+'-'+date.getMonth()+'-'+date.getFullYear();
+  dateAsString(date: Date) {
+    return date.getDate() + '-' + date.getMonth() + '-' + date.getFullYear();
   }
   public punchOut() {
     console.log('Inside punchout');
-    for(let i in this.loggedUser.attendance){
-      if(this.dateAsString(this.loggedUser.attendance[i].date)==this.dateAsString(this.date)){
-        this.loggedUser.attendance[i].outTime=this.time;
-        this.loggedUser.attendance[i].punched=true;
-        this.punchedDay=true;
+    for (let i in this.loggedUser.attendance) {
+      if (this.dateAsString(this.loggedUser.attendance[i].date) == this.dateAsString(this.date)) {
+        this.loggedUser.attendance[i].outTime = this.time;
+        this.loggedUser.attendance[i].punched = true;
+        this.punchedDay = true;
       }
     }
     this.dataService.updateAttendance(this.loggedUser);

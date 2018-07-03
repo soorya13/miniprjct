@@ -38,7 +38,7 @@ password:string;
   this.user.password=this.password;
 console.log('Trying to signup: '+JSON.stringify(this.user));
   this.dataService.addUser(this.user);
-  alert("registered successfully");
+  alert("Registered Successfully.Please remember your login User ID: "+this.user.id);
   this.navCtrl.setRoot(HomePage);  }
 
 }
